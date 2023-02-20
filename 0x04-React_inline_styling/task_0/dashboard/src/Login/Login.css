@@ -1,9 +1,6 @@
 .App-body {
-  font-size: 1rem;
-  padding: 2em;
-  height: 45%;
+    height: 100%;
+    padding: 20px;
+    font-size: 1.5rem;
 }
 
-form input {
-  margin: 10px;
-}

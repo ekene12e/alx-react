@@ -1,60 +1,37 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { StyleSheet, css } from "aphrodite";
+import { css, StyleSheet } from 'aphrodite';
 
-class NotificationItem extends React.PureComponent {
-  render() {
-    const { type, value, html, markAsRead, id } = this.props;
-    return (
-      <>
-        {type && value ? (
-          <li className={type === "default" ? css(styles.default) : css(styles.urgent)} onClick={() => markAsRead(id)} data-notification-type={type}>
-            {value}
-          </li>
-        ) : null}
-        {html ? <li onClick={() => markAsRead(id)} data-urgent className={css(styles.urgent)} dangerouslySetInnerHTML={{ __html: html }}></li> : null}
-      </>
-    );
-  }
+
+function NotificationItem({type, value, html, markAsRead, key}) {
+    if ((type && value) && (!html)) return(<li
+        data-notification-type={type}
+        onClick={() => markAsRead(key)}
+        className={type == "default" ? css(stylesNotificationItem.liDefault) : css(stylesNotificationItem.liUrgent)}>{value}</li>)
+    return(
+        <li data-priority={type} dangerouslySetInnerHTML={html}>{value}</li>
+    )
 }
 
-const styles = StyleSheet.create({
-  default: {
-    color: "blue",
-    "@media (max-width: 375px)": {
-      borderBottom: "1px solid black",
-      listStyle: "none",
-      fontSize: "20px",
-      padding: "10px 8px",
+const stylesNotificationItem = StyleSheet.create({
+    liDefault: {
+        color: "blue"
     },
-  },
-  urgent: {
-    color: "red",
-    "@media (max-width: 375px)": {
-      borderBottom: "1px solid black",
-      listStyle: "none",
-      fontSize: "20px",
-      padding: "10px 8px",
-    },
-  },
-});
+    liUrgent: {
+        color: "red"
+    }
+})
 
 NotificationItem.propTypes = {
-  type: PropTypes.string.isRequired,
-  value: PropTypes.string,
-  __html: PropTypes.shape({
-    html: PropTypes.string,
-  }),
-  markAsRead: PropTypes.func,
-  id: PropTypes.number,
-};
+    html: PropTypes.shape({
+        __html: PropTypes.string
+    }),
+    type: PropTypes.string,
+    value: PropTypes.string
+}
 
 NotificationItem.defaultProps = {
-  type: "default",
-  markAsRead: () => {
-    console.log("empty func");
-  },
-  id: 0,
-};
+    type: 'default'
+}
 
-export default NotificationItem;
+export { NotificationItem };

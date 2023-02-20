@@ -1,25 +1,24 @@
-.Notifications {
-  padding: 1em;
-  border: 2px dashed red;
-  position: absolute;
-  top: 1.8em;
-  right: 0;
+div.menuItem {
+    text-align: right;
 }
 
-.notification-header {
-  display: flex;
-  justify-content: space-between;
+div.Notifications {
+    border: 1px dashed red;
+    padding: 2px;
+    width: 35%;
+    position: absolute;
+    right: 0%;
 }
 
-.menuItem {
-  text-align: right;
+[data-priority='default'] {
+    color: blue;
 }
 
-[data-notification-type="default"] {
-  color: blue;
+[data-priority='urgent'] {
+    color: red;
 }
 
-[data-urgent],
-[data-notification-type="urgent"] {
-  color: red;
+.Notifications img {
+    width: 20px;
+    height: 20px;
 }

@@ -1,15 +1,20 @@
-import { shallow } from "enzyme";
-import React from "react";
-import Login from "./Login";
+import { shallow } from 'enzyme';
+import { Login } from '../Login/Login.js';
+import Adapter from 'enzyme-adapter-react-16';
 
-describe("Header", () => {
-  it("should render without crashing", () => {
-    const wrapper = shallow(<Login />);
-    expect(wrapper.exists()).toEqual(true);
-  });
-  it("should have 2 input tags and 2 label tags", () => {
-    const wrapper = shallow(<Login />);
-    expect(wrapper.find("label")).toHaveLength(2);
-    expect(wrapper.find("input")).toHaveLength(2);
-  });
+describe('<Login/>', ()=> {
+    it('renders Login component without crashing', ()=> {
+        const wrapper = shallow(<Login />);
+        expect(wrapper.exists()).toBe(true);
+    });
+
+    it('Login renders img', () => {
+        const wrapper = shallow(<Login />);
+        expect(wrapper.find('input').length).toBe(2);
+    });
+
+    it('Login renders h1', () => {
+        const wrapper = shallow(<Login />);
+        expect(wrapper.find('label').length).toBe(2);
+    });
 });

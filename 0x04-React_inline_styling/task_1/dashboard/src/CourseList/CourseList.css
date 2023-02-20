@@ -1,0 +1,8 @@
+table#CourseList thead {
+    border: 1px solid;
+    width: 100%;
+}
+
+table#CourseList thead > tr > th{
+    border: 1px solid;
+}
